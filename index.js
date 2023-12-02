@@ -1,6 +1,6 @@
-import { callPopup } from "../../../../script.js";
-import { getContext } from "../../../extensions.js";
-import { registerSlashCommand } from "../../../slash-commands.js";
+import { callPopup } from '../../../../script.js';
+import { getContext } from '../../../extensions.js';
+import { registerSlashCommand } from '../../../slash-commands.js';
 export { MODULE_NAME };
 
 const MODULE_NAME = 'dice';
@@ -51,7 +51,7 @@ function addDiceRollButton() {
 
     $('#extensionsMenu').prepend(buttonHtml);
 
-    $(document.body).append(dropdownHtml)
+    $(document.body).append(dropdownHtml);
     $('#dice_dropdown li').on('click', doDiceRoll);
     const button = $('#roll_dice');
     const dropdown = $('#dice_dropdown');
@@ -65,7 +65,7 @@ function addDiceRollButton() {
     $(document).on('click touchend', function (e) {
         const target = $(e.target);
         if (target.is(dropdown)) return;
-        if (target.is(button) && !dropdown.is(":visible")) {
+        if (target.is(button) && !dropdown.is(':visible')) {
             e.preventDefault();
 
             dropdown.fadeIn(250);
@@ -84,5 +84,5 @@ jQuery(function () {
     addDiceRollButton();
     moduleWorker();
     setInterval(moduleWorker, UPDATE_INTERVAL);
-    registerSlashCommand('roll', (_, value) => doDiceRoll(value), ['r'], "<span class='monospace'>(dice formula)</span> – roll the dice. For example, /roll 2d6", false, true);
+    registerSlashCommand('roll', (_, value) => doDiceRoll(value), ['r'], '<span class=\'monospace\'>(dice formula)</span> – roll the dice. For example, /roll 2d6', false, true);
 });
