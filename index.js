@@ -49,7 +49,8 @@ function addDiceRollButton() {
         </ul>
     </div>`;
 
-    $('#extensionsMenu').prepend(buttonHtml);
+    const getWandContainer = () => $(document.getElementById('dice_wand_container') ?? document.getElementById('extensionsMenu'));
+    getWandContainer().append(buttonHtml);
 
     $(document.body).append(dropdownHtml);
     $('#dice_dropdown li').on('click', doDiceRoll);
