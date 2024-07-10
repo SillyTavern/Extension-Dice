@@ -68,7 +68,10 @@ function addDiceRollButton() {
     getWandContainer().append(buttonHtml);
 
     $(document.body).append(dropdownHtml);
-    $('#dice_dropdown li').on('click', doDiceRoll);
+    $('#dice_dropdown li').on('click', function () {
+        dropdown.fadeOut(animation_duration);
+        doDiceRoll($(this).data('value'), false);
+    });
     const button = $('#roll_dice');
     const dropdown = $('#dice_dropdown');
     dropdown.hide();
@@ -79,7 +82,7 @@ function addDiceRollButton() {
 
     $(document).on('click touchend', function (e) {
         const target = $(e.target);
-        if (target.is(dropdown)) return;
+        if (target.is(dropdown) || target.closest(dropdown).length) return;
         if (target.is(button) && !dropdown.is(':visible')) {
             e.preventDefault();
 
